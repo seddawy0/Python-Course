@@ -1,5 +1,5 @@
 print("######################### Shopping Cart Program ###########################")
-# Shopping Cart v1
+# Shopping Cart V1
 foods = []
 prices = []
 total = 0
