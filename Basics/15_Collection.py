@@ -52,7 +52,7 @@ print("##############################################")
 print()
 print()
 print("################### Tuple ####################")
-# Sets {}
+# Tuple ()
 fruits = ("Apple", "Banana", "Coconut", "Mango")
 # print(dir(fruits))
 # print(help(fruits))
