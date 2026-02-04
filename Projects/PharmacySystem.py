@@ -59,7 +59,7 @@ def displayRecipt(cart, total):
     for drugName, drugPrice, drugQuantity in cart:
         print(f"{drugName:11} | Price: ${drugPrice:5.2f} | Quantity: {drugQuantity}")
     print(f"The total price is:  ${total:5.2f}")
-print("=============== Pharmacy Recipt ===============")
+print("=============== Pharmacy Receipt ===============")
 displayRecipt(cart, total)
 print("===============================================")
 ###############################################################
