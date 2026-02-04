@@ -1,9 +1,9 @@
 print("######################### Pharmacy System ###########################")
-# Pharmacy System
+# Pharmacy System V2.0
 ########################### Logic #############################
 pharmacyInventory = {
                      "Painkillers": {
-                                     "Panadol": {"price": 10, "stock": 15},
+                                     "Panadol Extra": {"price": 10, "stock": 15},
                                      "Advil": {"price": 15, "stock": 20},
                                      "Brufen": {"price": 10, "stock": 15},
                                      "Aspirin": {"price": 6, "stock": 50}},
@@ -18,31 +18,49 @@ pharmacyInventory = {
                                      "Cleanser": {"price": 30, "stock": 10},
                                      "Serum": {"price": 16, "stock": 18}}
                     }
-cart = []
-total = 0
-print("=============== Pharmacy Inventory ===============")
-for category, drugs in pharmacyInventory.items():
-    print(f"--------------- {category} ---------------")
-    for drugName, drugInfo in drugs.items():
-        print(f"{drugName:11} | Price: ${drugInfo["price"]:5.2f} | Stock: {drugInfo["stock"]}") # New Idea
-print("==================================================")
-while True: # I need to be confident in this
-    drug = input("Select a drug to buy (q to quit): ")
-    if drug.lower() == "q":
-        break
-    for drugs in pharmacyInventory.values():
-        if drug.capitalize() in drugs:
-            quantity = int(input(f"Enter the quantity of the {drug} to buy: "))
-            while quantity > drugs[drug.capitalize()]["stock"]:
-                print(f"Only {drugs[drug.capitalize()]["stock"]} left!")
-                quantity = int(input(f"Enter the quantity of the {drug} to buy: "))
-            price = drugs[drug.capitalize()]["price"]
-            total += drugs[drug.capitalize()]["price"] * quantity
-            drugs[drug.capitalize()]["stock"] -= quantity
-            cart.append((drug.capitalize(), price, quantity)) # Only Tuples
-            print(f"Added {quantity} of {drug.capitalize()} to the cart.")
+
+def displayInventory(inventory):
+    for category, drugs in inventory.items():
+        print(f"--------------- {category} ---------------")
+        for drugName, drugInfo in drugs.items():
+            print(f"{drugName:11} | Price: ${drugInfo['price']:5.2f} | Stock: {drugInfo['stock']}")
+print("============== Pharmacy Inventory =============")
+displayInventory(pharmacyInventory)
+print("===============================================")
+print()
+def processPurchasing():
+    cart = []
+    total = 0
+    while True: # I need to be confident in this
+        drug = input("Select a drug to buy (q to quit): ")
+        if drug.lower() == "q":
             break
-    else:
-        print(f"Drug ({drug.capitalize()}) not found!")
+        drug = drug.title()
+        for drugs in pharmacyInventory.values():
+            if drug in drugs:
+                quantity = int(input(f"Enter the quantity of the {drug} to buy: "))
+                while quantity > drugs[drug]["stock"]:
+                    print(f"Only {drugs[drug]['stock']} left!")
+                    quantity = int(input(f"Enter the quantity of the {drug} to buy: "))
+                price = drugs[drug]["price"]
+                total += drugs[drug]["price"] * quantity
+                drugs[drug]["stock"] -= quantity
+                cart.append((drug, price, quantity)) # Only Tuples
+                print(f"Added {quantity} of {drug} to the cart.")
+                break
+        else:
+            print(f"Drug ({drug}) not found!")
+    return cart, total
+print("===============================================")
+cart, total = processPurchasing()
+print("===============================================")
+print()
+def displayRecipt(cart, total):
+    for drugName, drugPrice, drugQuantity in cart:
+        print(f"{drugName:11} | Price: ${drugPrice:5.2f} | Quantity: {drugQuantity}")
+    print(f"The total price is:  ${total:5.2f}")
+print("=============== Pharmacy Recipt ===============")
+displayRecipt(cart, total)
+print("===============================================")
 ###############################################################
 print("#####################################################################")
