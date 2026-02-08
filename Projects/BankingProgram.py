@@ -1,5 +1,3 @@
-print("***********************************************")
-print("                 Banking Program               ")
 # Banking Program V1
 ########################### Logic #############################
 def displayMenu():
@@ -36,7 +34,9 @@ def bankSystem():
                 print(f"Your balance is: ${balance:.2f}")
             case _:
                 print(f"{userInput} is not valid")
-if __name__ == "__main__":
-    bankSystem()
 ###############################################################
-print("***********************************************")
+if __name__ == "__main__":
+    print("***********************************************")
+    print("                 Banking Program               ")
+    bankSystem()
+    print("***********************************************")
