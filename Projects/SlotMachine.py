@@ -30,8 +30,9 @@ def slotmachineSystem():
         match slotMachine:
             case ("🍒", "🍒", "🍒") | ("🍋", "🍋", "🍋") |("🍉", "🍉", "🍉") |("⭐", "⭐", "⭐") |("🔔", "🔔", "🔔"):
                      currentBalance -= betAmount
-                     currentBalance = 10 * betAmount
-                     print(f"YOU WON ${currentBalance}!!!!")
+                     winBalance = 10 * betAmount
+                     currentBalance += winBalance
+                     print(f"YOU WON ${winBalance}!!!!")
             case _:
                 print(f"Sorry, You lost this round!")
                 currentBalance -= betAmount
